@@ -1,0 +1,132 @@
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Godot 4+ specific
+.godot/
+*.tmp
+
+# Godot UID files (auto-generated)
+*.cs.uid
+*.gd.uid
+*.tres.uid
+*.tscn.uid
+
+# Godot import files
+*.import
+
+# C# / .NET specific
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+*.cache
+*.pdb
+*.log
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio / Visual Studio Code
+.vs/
+.vscode/
+*.sln.docstates
+*.userprefs
+*.suo
+*.user
+*.sln.ide/
+
+# Rider IDE
+.idea/
+
+# Mono auto generated files
+mono_crash.*
+
+# NuGet packages
+*.nupkg
+# NuGet v3's project.json files produces more ignorable files
+*.nuget.props
+*.nuget.targets
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# MSTest test results
+TestResults/
+[Tt]est[Rr]esult*/
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+
+# Godot export templates
+*.tpz
+
+# Godot export presets
+export_presets.cfg
+
+# Godot specific
+# Imported translations
+*.translation
+
+# Mono specific
+Assemblies/
+mono_crash.*
+
+# Godot project specific
+*.blend1
+*.blend2
+
+# Godot export builds
+*.apk
+*.ipa
+*.exe
+*.zip
+*.dmg
+*.tar.gz
+*.rpm
+*.deb
+*.flatpak
+*.AppImage
+
+# Log files
+*.log
+logs/
+sysinfo.txt
+*.stackdump
+
+# Temporary files
+*~
+*.swp
+*.swo
+
+# Backup files
+*.bak
+*.backup
