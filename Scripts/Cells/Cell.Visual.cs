@@ -13,10 +13,6 @@ namespace NPR13.Scripts.Cells
             {
                 label.Text = "🚩";
             }
-            else if (IsMine)
-            {
-                label.Text = "💣";
-            }
             else if (IsRevealed)
             {
                 if (AdjacentMines > 0)
@@ -25,6 +21,22 @@ namespace NPR13.Scripts.Cells
                     label.Modulate = GetNumberColor(AdjacentMines);
                 }
                 Modulate = Colors.WebGray;
+            }
+        }
+
+        public void GameOverVisual()
+        {
+            if(IsMine && IsFlagged)
+            {
+                Modulate = Colors.Green;
+            }
+            else if(!IsMine && IsFlagged)
+            {
+                Modulate = Colors.Red;
+            }
+            else if (IsMine)
+            {
+                label.Text = "💣";
             }
         }
 

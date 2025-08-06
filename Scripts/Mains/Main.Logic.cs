@@ -136,9 +136,9 @@ namespace NPR13.Scripts.Mains
         {
             foreach (var cell in cells.Values)
             {
-                if (cell.IsMine)
+                if (cell.IsMine || cell.IsFlagged)
                 {
-                    cell.UpdateVisual();
+                    cell.GameOverVisual();
                 }
             }
         }
