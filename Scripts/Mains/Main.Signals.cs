@@ -7,38 +7,33 @@ namespace NPR13.Scripts.Mains
         [Signal]
         public delegate void InitializeClickEventHandler(Vector2I pos);
 
-        public override void _Input(InputEvent @event)
-        {
-            if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
-            {
-                Vector2I pos = new Vector2I((int)mouseEvent.Position.X, (int)mouseEvent.Position.Y);
-                EmitSignal(SignalName.InitializeClick, pos);
-            }
-        }
+        private bool gameInitialized = false;
 
         private void InitializeSignals()
         {
+            InitializeClick += OnInitializeClick;
         }
 
         private void OnInitializeClick(Vector2I pos)
         {
-            // ТУТ БУДЕТ ЛОГИКА СОЗЛАНИЯ поля с начальной позиции
+            CreateGameField(pos);
+            gameInitialized = true;
             InitializeClick -= OnInitializeClick;
         }
 
         private void OnCellClicked(Vector2I pos)
         {
-            GD.Print($"Клик по клетке {pos}");
+            if (!gameInitialized)
+            {
+                EmitSignal(SignalName.InitializeClick, pos);
+                RevealCellAfClicked(pos);
+                return;
+            }
+
             if (!cells.TryGetValue(pos, out var cell) || cell.IsFlagged) return;
 
-            if (cell.IsMine)
-            {
-                GameOver();
-            }
-            else
-            {
-                RevealCellAfClicked(pos);
-            }
+            if (cell.IsMine) GameOver();     
+            else RevealCellAfClicked(pos);           
         }
 
         private void OnCellRightClicked(Vector2I pos)

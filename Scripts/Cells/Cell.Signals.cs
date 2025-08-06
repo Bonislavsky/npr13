@@ -13,7 +13,6 @@ namespace NPR13.Scripts.Cells
 
         private void InitializeSignals()
         {
-            label = GetNode<Label>("CellLabel");
             GuiInput += OnCellGuiInput;
         }
 
@@ -21,7 +20,7 @@ namespace NPR13.Scripts.Cells
         {
             if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
             {
-                if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.DoubleClick)
+                if (mouseEvent.ButtonIndex == MouseButton.Left && IsRevealed && mouseEvent.DoubleClick)
                 {
                     EmitSignal(SignalName.CellDoubleClicked, GridPosition);
                 }
