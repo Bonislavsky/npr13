@@ -1,15 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://coeojc5rmtc70"]
+[gd_scene load_steps=4 format=3 uid="uid://coeojc5rmtc70"]
 
 [ext_resource type="Texture2D" uid="uid://wgswlxm8onfi" path="res://Arts/cell.jpg" id="2_cu71v"]
 [ext_resource type="Script" uid="uid://cm6meh8ij68e3" path="res://Scripts/Cells/Cell.cs" id="2_wfxbd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgku0"]
+size = Vector2(32, 32)
 
 [node name="Cell" type="Panel"]
 custom_minimum_size = Vector2(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("2_wfxbd")
-
-[node name="Area2D" type="Area2D" parent="."]
 
 [node name="CellTexture" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
@@ -27,3 +28,16 @@ offset_bottom = 34.0
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CellBacklight" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.286275, 0.670588, 0.439216, 0.560784)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_jgku0")

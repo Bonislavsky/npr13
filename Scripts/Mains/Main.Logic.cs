@@ -141,6 +141,7 @@ namespace NPR13.Scripts.Mains
                     cell.GameOverVisual();
                 }
             }
+            _hud.ShowGameOverPanel();
         }
     }
 }

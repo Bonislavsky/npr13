@@ -61,8 +61,20 @@ namespace NPR13.Scripts.Mains
             }
         }
 
+        private void OnCellMouseEntered(Vector2I pos)
+        {
+            GD.Print($"ЗАХОД клетка {pos}");
+        }
+
+        private void OnCellMouseExited(Vector2I pos)
+        {
+            GD.Print($"ВЫХОД клета {pos}");
+        }
+
         public void Restart()
         {
+            _hud.HideGameOverPanel();
+
             gameInitialized = false;
             InitializeClick += OnInitializeClick;
 

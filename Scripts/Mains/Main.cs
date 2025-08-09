@@ -46,6 +46,9 @@ namespace NPR13.Scripts.Mains
                     cellInstance.CellRightClicked += OnCellRightClicked;
                     cellInstance.CellDoubleClicked += OnCellDoubleClicked;
 
+                    cellInstance.CellMouseEntered += OnCellMouseEntered;
+                    cellInstance.CellMouseExited += OnCellMouseExited;
+
                     _gridContainer.AddChild(cellInstance);
                     cells[pos] = cellInstance;
                 }

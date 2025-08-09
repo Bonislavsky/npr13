@@ -6,19 +6,19 @@ namespace NPR13.Scripts.Cells
     {
         public void UpdateVisual()
         {
-            label.Text = "";
-            label.Modulate = Colors.White;
+            _label.Text = "";
+            _label.Modulate = Colors.White;
 
             if (IsFlagged)
             {
-                label.Text = "🚩";
+                _label.Text = "🚩";
             }
             else if (IsRevealed)
             {
                 if (AdjacentMines > 0)
                 {
-                    label.Text = AdjacentMines.ToString();
-                    label.Modulate = GetNumberColor(AdjacentMines);
+                    _label.Text = AdjacentMines.ToString();
+                    _label.Modulate = GetNumberColor(AdjacentMines);
                 }
                 Modulate = Colors.WebGray;
             }
@@ -26,8 +26,8 @@ namespace NPR13.Scripts.Cells
 
         public void ResetVisual()
         {
-            label.Text = "";
-            label.Modulate = Colors.White;
+            _label.Text = "";
+            _label.Modulate = Colors.White;
             Modulate = Colors.White;
         }
 
@@ -43,7 +43,7 @@ namespace NPR13.Scripts.Cells
             }
             else if (IsMine)
             {
-                label.Text = "💣";
+                _label.Text = "💣";
             }
         }
 

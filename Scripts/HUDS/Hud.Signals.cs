@@ -9,7 +9,8 @@ namespace NPR13.Scripts.HUDS
 
         private void InitializeSignals()
         {
-            _restartButton.Pressed += OnRestartPressed;
+            _gameOverRestartButton.Pressed += OnRestartPressed;
+            _topPanelRestartButton.Pressed += OnRestartPressed;
         }
 
         private void OnRestartPressed()

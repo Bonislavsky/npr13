@@ -29,35 +29,66 @@ grow_vertical = 2
 text = "Re"
 
 [node name="GameOverPanel" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="GameOverPanel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="GameOverLabel" type="Label" parent="GameOverPanel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -185.0
+offset_right = 198.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.973978, 0.856942, 0.924423, 1)
 
 [node name="ThankYouLabel" type="Label" parent="GameOverPanel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 149.0
+offset_top = 220.0
+offset_right = 548.0
+offset_bottom = 325.0
+theme_override_colors/font_color = Color(0.730583, 0.666587, 0.857126, 1)
+theme_override_colors/font_shadow_color = Color(0.159832, 0.0264702, 0.15777, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Спасибо за игру, неважно выиграл ты или проигал, главное чтов ыиграл!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="GameOverPanel"]
+layout_mode = 0
+offset_left = 303.0
+offset_top = 439.0
+offset_right = 385.0
+offset_bottom = 462.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "game over"
 
 [node name="PlayAgainButton" type="Button" parent="GameOverPanel"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 382.0
+offset_top = 407.0
+offset_right = 469.0
+offset_bottom = 438.0
+text = "play again"
 
 [node name="MainMenuButton" type="Button" parent="GameOverPanel"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 179.0
+offset_top = 408.0
+offset_right = 331.0
+offset_bottom = 439.0
+text = "необчный режим"

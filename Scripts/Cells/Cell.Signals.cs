@@ -10,10 +10,16 @@ namespace NPR13.Scripts.Cells
         public delegate void CellRightClickedEventHandler(Vector2I pos);
         [Signal]
         public delegate void CellDoubleClickedEventHandler(Vector2I pos);
+        [Signal]
+        public delegate void CellMouseEnteredEventHandler(Vector2I pos);
+        [Signal]
+        public delegate void CellMouseExitedEventHandler(Vector2I pos);
 
         private void InitializeSignals()
         {
             GuiInput += OnCellGuiInput;
+            MouseEntered += () => EmitSignal(SignalName.CellMouseEntered, GridPosition);
+            MouseExited += () => EmitSignal(SignalName.CellMouseExited, GridPosition);
         }
 
         private void OnCellGuiInput(InputEvent @event)

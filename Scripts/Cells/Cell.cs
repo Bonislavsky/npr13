@@ -12,11 +12,14 @@ namespace NPR13.Scripts.Cells
         public int AdjacentMines { get; private set; }
         public CellType CellType { get; private set; }
 
-        private Label label;
+        private Label _label;
+        private ColorRect _backlight;
 
         public override void _Ready()
         {
-            label = GetNode<Label>("CellLabel");
+            _label = GetNode<Label>("CellLabel");
+            _backlight = GetNode<ColorRect>("CellBacklight");
+
             InitializeSignals();
         }
 
