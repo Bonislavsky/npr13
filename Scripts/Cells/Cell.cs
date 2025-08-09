@@ -24,6 +24,11 @@ namespace NPR13.Scripts.Cells
         {
             GridPosition = pos;
             CellType = CellType.Default;
+            DefaultValue();
+        }
+
+        public void DefaultValue()
+        {
             IsMine = false;
             IsFlagged = false;
             IsRevealed = false;

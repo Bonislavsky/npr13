@@ -15,6 +15,11 @@ run/main_scene="uid://s4i621kmis8"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=700
+window/size/viewport_height=700
+
 [dotnet]
 
 project/assembly_name="NPR13"

@@ -6,8 +6,9 @@ namespace NPR13.Scripts.Mains
 {
     public partial class Main : Node
     {
-        private PackedScene cellScene;
-        private GridContainer gridContainer;
+        private PackedScene _cellScene;
+        private GridContainer _gridContainer;
+        private Hud _hud;
 
         private int fieldWidth = 16;
         private int fieldHeight = 16;
@@ -17,8 +18,9 @@ namespace NPR13.Scripts.Mains
 
         public override void _Ready()
         {
-            cellScene = GD.Load<PackedScene>("res://Scenes//Cell.tscn");
-            gridContainer = GetNode<GridContainer>("GridContainer");
+            _cellScene = GD.Load<PackedScene>("res://Scenes//Cell.tscn");
+            _gridContainer = GetNode<GridContainer>("GridContainer");
+            _hud = GetNode<Hud>("HUD");
 
             InitializeSignals();
             FillingContainer();
@@ -26,7 +28,7 @@ namespace NPR13.Scripts.Mains
 
         private void FillingContainer()
         {
-            gridContainer.Columns = fieldWidth;
+            _gridContainer.Columns = fieldWidth;
             cells.Clear();
 
             for (int x = 0; x < fieldWidth; x++)
@@ -34,7 +36,7 @@ namespace NPR13.Scripts.Mains
                 for (int y = 0; y < fieldHeight; y++)
                 {
                     var pos = new Vector2I(x, y);
-                    var cellInstance = cellScene.Instantiate<Cell>();
+                    var cellInstance = _cellScene.Instantiate<Cell>();
 
                     cellInstance.Initialize(pos);
                     cellInstance.Name = $"cell_{x}-{y}";
@@ -43,7 +45,7 @@ namespace NPR13.Scripts.Mains
                     cellInstance.CellRightClicked += OnCellRightClicked;
                     cellInstance.CellDoubleClicked += OnCellDoubleClicked;
 
-                    gridContainer.AddChild(cellInstance);
+                    _gridContainer.AddChild(cellInstance);
                     cells[pos] = cellInstance;
                 }
             }

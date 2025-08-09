@@ -24,6 +24,13 @@ namespace NPR13.Scripts.Cells
             }
         }
 
+        public void ResetVisual()
+        {
+            label.Text = "";
+            label.Modulate = Colors.White;
+            Modulate = Colors.White;
+        }
+
         public void GameOverVisual()
         {
             if(IsMine && IsFlagged)

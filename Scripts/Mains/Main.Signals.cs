@@ -1,4 +1,6 @@
 using Godot;
+using NPR13.Scripts.Cells;
+using System.Linq;
 
 namespace NPR13.Scripts.Mains
 {
@@ -12,6 +14,7 @@ namespace NPR13.Scripts.Mains
         private void InitializeSignals()
         {
             InitializeClick += OnInitializeClick;
+            _hud.RestartGame += Restart;
         }
 
         private void OnInitializeClick(Vector2I pos)
@@ -55,6 +58,22 @@ namespace NPR13.Scripts.Mains
             else
             {
                 RevealCellAfDoubleClicked(pos);
+            }
+        }
+
+        public void Restart()
+        {
+            gameInitialized = false;
+            InitializeClick += OnInitializeClick;
+
+            foreach (var position in cells.Keys.ToArray())
+            {
+                if (cells.ContainsKey(position)) 
+                {
+                    Cell cell = cells[position];
+                    cell.DefaultValue();
+                    cell.ResetVisual();
+                }
             }
         }
     }

@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqihxnbu2qp67"]
+
+[ext_resource type="Script" uid="uid://w65npk3nvejy" path="res://Scripts/HUDS/Hud.cs" id="1_e0onf"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_e0onf")
+
+[node name="TopPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_vertical = 0
+
+[node name="RestartButton" type="Button" parent="TopPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -15.5
+offset_right = 54.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Re"
+
+[node name="GameOverPanel" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="GameOverPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverLabel" type="Label" parent="GameOverPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ThankYouLabel" type="Label" parent="GameOverPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PlayAgainButton" type="Button" parent="GameOverPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="MainMenuButton" type="Button" parent="GameOverPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
