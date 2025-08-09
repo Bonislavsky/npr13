@@ -1,20 +1,15 @@
 using Godot;
 
-public partial class Hud : CanvasLayer
+namespace NPR13.Scripts.HUDS
 {
-    [Signal]
-    public delegate void RestartGameEventHandler();
-
-    private Button _restartButton;
-
-    public override void _Ready()
+    public partial class Hud : CanvasLayer
     {
-        _restartButton = GetNode<Button>("TopPanel/RestartButton");
-        _restartButton.Pressed += OnRestartPressed;
-    }
+        private Button _restartButton;
 
-    private void OnRestartPressed()
-    {
-        EmitSignal(SignalName.RestartGame);
+        public override void _Ready()
+        {
+            _restartButton = GetNode<Button>("TopPanel/RestartButton");
+        }
     }
 }
+
