@@ -51,7 +51,7 @@ offset_right = 198.0
 offset_bottom = 165.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.973978, 0.856942, 0.924423, 1)
+color = Color(0.972549, 0.858824, 0.92549, 0.34902)
 
 [node name="ThankYouLabel" type="Label" parent="GameOverPanel"]
 layout_mode = 0

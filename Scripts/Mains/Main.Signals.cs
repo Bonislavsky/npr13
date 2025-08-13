@@ -63,12 +63,12 @@ namespace NPR13.Scripts.Mains
 
         private void OnCellMouseEntered(Vector2I pos)
         {
-            GD.Print($"ЗАХОД клетка {pos}");
+            ToggleBacklight(pos, false);
         }
 
         private void OnCellMouseExited(Vector2I pos)
         {
-            GD.Print($"ВЫХОД клета {pos}");
+            ToggleBacklight(pos, true);
         }
 
         public void Restart()

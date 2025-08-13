@@ -6,8 +6,7 @@ namespace NPR13.Scripts.Cells
     {
         public void UpdateVisual()
         {
-            _label.Text = "";
-            _label.Modulate = Colors.White;
+            ResetVisual();
 
             if (IsFlagged)
             {
@@ -29,6 +28,7 @@ namespace NPR13.Scripts.Cells
             _label.Text = "";
             _label.Modulate = Colors.White;
             Modulate = Colors.White;
+            _backlight.Visible = false;
         }
 
         public void GameOverVisual()

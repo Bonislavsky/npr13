@@ -85,21 +85,17 @@ namespace NPR13.Scripts.Mains
                     if (x == 0 && y == 0) continue;
 
                     var checkPos = pos + new Vector2I(x, y);
-                    if (CheckMine(checkPos)) count++;
+                    if (cells.TryGetValue(checkPos, out var tmpCell) && tmpCell.IsMine) count++;
                 }
             }
 
             return count;
         }
 
-        private bool CheckMine(Vector2I checkPos)
-        {
-            return cells.TryGetValue(checkPos, out var tmpCell) && tmpCell.IsMine;
-        }
-
         private void RevealCellAfDoubleClicked(Vector2I pos)
         {
-            if (!cells.TryGetValue(pos, out var cell) || cell.IsFlagged || cell.IsMine) return;
+            
+            if (!cells.TryGetValue(pos, out var cell) || cell.IsFlagged) return;
 
             for (int x = -1; x <= 1; x++)
             {
@@ -114,10 +110,13 @@ namespace NPR13.Scripts.Mains
         private void RevealCellAfClicked(Vector2I pos)
         {
             if (!cells.TryGetValue(pos, out var cell) || cell.IsFlagged || cell.IsRevealed) return;
-
-            if(cell.IsMine) { GameOver(); }
             cell.SetRevealed();
             cell.UpdateVisual();
+
+            if (cell.IsMine) 
+            {
+                GameOver(); 
+            }
 
             if (cell.AdjacentMines == 0)
             {
@@ -127,6 +126,24 @@ namespace NPR13.Scripts.Mains
                     {
                         if (x == 0 && y == 0) continue;
                         RevealCellAfClicked(pos + new Vector2I(x, y));
+                    }
+                }
+            }
+        }
+
+        private void ToggleBacklight(Vector2I pos, bool isDisable)
+        {
+            if (cells.TryGetValue(pos, out var valCell) && !valCell.IsRevealed) return;
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0) continue;
+                    var checkPos = pos + new Vector2I(x, y);
+                    if (cells.TryGetValue(checkPos, out var tmpCell) && !tmpCell.IsRevealed )
+                    {
+                        if (isDisable) tmpCell.DisableBacklightVisibility();
+                        else tmpCell.EnableBacklightVisibility();
                     }
                 }
             }

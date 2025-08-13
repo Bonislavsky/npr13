@@ -40,10 +40,14 @@ namespace NPR13.Scripts.Cells
         public void SetMine() => IsMine = true;
         public void SetAdjacentMines(int count) => AdjacentMines = count;
         public void ToggleFlag() => IsFlagged = !IsFlagged;
+
+        public void DisableBacklightVisibility() => _backlight.Visible = false;
+        public void EnableBacklightVisibility() => _backlight.Visible = true;
+
         public void SetRevealed()
         {
             if (IsFlagged) return;
             IsRevealed = true;
-        }
+        }  
     }
 }
