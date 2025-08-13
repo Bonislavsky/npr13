@@ -115,7 +115,8 @@ namespace NPR13.Scripts.Mains
 
             if (cell.IsMine) 
             {
-                GameOver(); 
+                GameOver();
+                return;
             }
 
             if (cell.AdjacentMines == 0)

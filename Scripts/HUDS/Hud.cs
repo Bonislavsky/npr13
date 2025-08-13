@@ -14,8 +14,9 @@ namespace NPR13.Scripts.HUDS
             _topPanelRestartButton = GetNode<Button>("TopPanel/RestartButton");
             _gameOverPanel = GetNode<Control>("GameOverPanel");
             _gameOverRestartButton = _gameOverPanel.GetNode<Button>("PlayAgainButton");
-
             _gameOverPanel.Visible = false;
+
+
 
             InitializeSignals();
         }
@@ -28,8 +29,6 @@ namespace NPR13.Scripts.HUDS
         public void ShowGameOverPanel()
         {
             _gameOverPanel.Visible = true;
-
-            //CreateTween().TweenProperty(_gameOverPanel, "modulate:a", 1.0f, 0.3f);
         }
     }
 }

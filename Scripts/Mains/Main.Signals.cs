@@ -35,7 +35,11 @@ namespace NPR13.Scripts.Mains
 
             if (!cells.TryGetValue(pos, out var cell) || cell.IsFlagged) return;
 
-            if (cell.IsMine) GameOver();     
+            if (cell.IsMine)
+            {
+                GameOver();
+                return;
+            }
             else RevealCellAfClicked(pos);           
         }
 
@@ -54,6 +58,7 @@ namespace NPR13.Scripts.Mains
             if (cell.IsMine)
             {
                 GameOver();
+                return;
             }
             else
             {
