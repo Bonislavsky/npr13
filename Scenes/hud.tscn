@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqihxnbu2qp67"]
+[gd_scene load_steps=3 format=3 uid="uid://bqihxnbu2qp67"]
 
 [ext_resource type="Script" uid="uid://w65npk3nvejy" path="res://Scripts/HUDS/Hud.cs" id="1_e0onf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0onf"]
+bg_color = Color(0.1, 0.1, 0.2, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.5, 0.8, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_e0onf")
@@ -38,57 +50,51 @@ offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="GameOverPanel"]
+[node name="Panel" type="Panel" parent="GameOverPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -202.0
-offset_top = -185.0
-offset_right = 198.0
-offset_bottom = 165.0
+offset_left = -200.0
+offset_top = -175.0
+offset_right = 200.0
+offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.972549, 0.858824, 0.92549, 0.34902)
+theme_override_styles/panel = SubResource("StyleBoxFlat_e0onf")
 
-[node name="ThankYouLabel" type="Label" parent="GameOverPanel"]
-layout_mode = 0
-offset_left = 149.0
-offset_top = 220.0
-offset_right = 548.0
-offset_bottom = 325.0
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -175.0
+offset_right = 200.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ThankYouLabel" type="Label" parent="GameOverPanel/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
 theme_override_colors/font_color = Color(0.730583, 0.666587, 0.857126, 1)
 theme_override_colors/font_shadow_color = Color(0.159832, 0.0264702, 0.15777, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Спасибо за игру, неважно выиграл ты или проигал, главное чтов ыиграл!!!"
+theme_override_font_sizes/font_size = 18
+text = "Спасибо за игру, неважно выиграл ты или проигал, главное что выиграл!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="GameOverLabel" type="Label" parent="GameOverPanel"]
-layout_mode = 0
-offset_left = 303.0
-offset_top = 439.0
-offset_right = 385.0
-offset_bottom = 462.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "game over"
-
-[node name="PlayAgainButton" type="Button" parent="GameOverPanel"]
-layout_mode = 0
-offset_left = 382.0
-offset_top = 407.0
-offset_right = 469.0
-offset_bottom = 438.0
+[node name="PlayAgainButton" type="Button" parent="GameOverPanel/Panel/VBoxContainer"]
+layout_mode = 2
 text = "play again"
 
-[node name="MainMenuButton" type="Button" parent="GameOverPanel"]
-layout_mode = 0
-offset_left = 179.0
-offset_top = 408.0
-offset_right = 331.0
-offset_bottom = 439.0
-text = "необчный режим"
+[node name="MainMenuButton" type="Button" parent="GameOverPanel/Panel/VBoxContainer"]
+layout_mode = 2
+text = "кастомный режим"

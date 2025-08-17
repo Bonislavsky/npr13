@@ -13,10 +13,8 @@ namespace NPR13.Scripts.HUDS
         {
             _topPanelRestartButton = GetNode<Button>("TopPanel/RestartButton");
             _gameOverPanel = GetNode<Control>("GameOverPanel");
-            _gameOverRestartButton = _gameOverPanel.GetNode<Button>("PlayAgainButton");
+            _gameOverRestartButton = GetNode<Button>("GameOverPanel/Panel/VBoxContainer/PlayAgainButton");
             _gameOverPanel.Visible = false;
-
-
 
             InitializeSignals();
         }
