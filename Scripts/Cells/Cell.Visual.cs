@@ -4,7 +4,7 @@ namespace NPR13.Scripts.Cells
 {
     public partial class Cell
     {
-        public void UpdateVisual()
+        public virtual void UpdateVisual()
         {
             ResetVisual();
 
@@ -17,13 +17,13 @@ namespace NPR13.Scripts.Cells
                 if (AdjacentMines > 0)
                 {
                     _label.Text = AdjacentMines.ToString();
-                    _label.Modulate = GetNumberColor(AdjacentMines);
+                    _label.Modulate = GetNumberColor(AdjacentMines);                  
                 }
                 Modulate = Colors.WebGray;
             }
         }
 
-        public void ResetVisual()
+        public virtual void ResetVisual()
         {
             _label.Text = "";
             _label.Modulate = Colors.White;
@@ -47,7 +47,7 @@ namespace NPR13.Scripts.Cells
             }
         }
 
-        private Color GetNumberColor(int number)
+        protected Color GetNumberColor(int number)
         {
             return number switch
             {

@@ -1,5 +1,4 @@
 using Godot;
-using NPR13.Scripts.Cells.Enums;
 
 namespace NPR13.Scripts.Cells
 {
@@ -10,10 +9,15 @@ namespace NPR13.Scripts.Cells
         public bool IsFlagged { get; private set; }
         public bool IsRevealed { get; private set; }
         public int AdjacentMines { get; private set; }
-        public CellType CellType { get; private set; }
+        public Vector2I[] MineZone { get; protected set; }
 
-        private Label _label;
-        private ColorRect _backlight;
+        protected Label _label;
+        protected ColorRect _backlight;
+
+        public Cell()
+        {
+            MineZone = GetMineZone();
+        }
 
         public override void _Ready()
         {
@@ -26,7 +30,6 @@ namespace NPR13.Scripts.Cells
         public void Initialize(Vector2I pos)
         {
             GridPosition = pos;
-            CellType = CellType.Default;
             DefaultValue();
         }
 
@@ -49,5 +52,20 @@ namespace NPR13.Scripts.Cells
             if (IsFlagged) return;
             IsRevealed = true;
         }  
+
+        public virtual Vector2I[] GetMineZone()
+        {
+            return
+            [
+                new Vector2I(-1, -1),
+                new Vector2I(-1,  0),
+                new Vector2I(-1,  1),
+                new Vector2I( 0, -1),
+                new Vector2I( 0,  1),
+                new Vector2I( 1, -1),
+                new Vector2I( 1,  0),
+                new Vector2I( 1,  1)
+            ];
+        }
     }
 }

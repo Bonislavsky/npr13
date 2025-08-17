@@ -77,16 +77,11 @@ namespace NPR13.Scripts.Mains
         private int CountAdjacentMines(Vector2I pos, Cell cell)
         {
             int count = 0;
-
-            for (int x = -1; x <= 1; x++)
+            
+            foreach(var posM in cell.MineZone)
             {
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
-
-                    var checkPos = pos + new Vector2I(x, y);
-                    if (cells.TryGetValue(checkPos, out var tmpCell) && tmpCell.IsMine) count++;
-                }
+                var checkPos = pos + posM;
+                if (cells.TryGetValue(checkPos, out var tmpCell) && tmpCell.IsMine) count++;
             }
 
             return count;
@@ -94,16 +89,11 @@ namespace NPR13.Scripts.Mains
 
         private void RevealCellAfDoubleClicked(Vector2I pos)
         {
-            
             if (!cells.TryGetValue(pos, out var cell) || cell.IsFlagged) return;
 
-            for (int x = -1; x <= 1; x++)
+            foreach (var posM in cell.MineZone)
             {
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0) continue;
-                    RevealCellAfClicked(pos + new Vector2I(x, y));
-                }
+                RevealCellAfClicked(pos + posM);
             }
         }
 
@@ -121,13 +111,9 @@ namespace NPR13.Scripts.Mains
 
             if (cell.AdjacentMines == 0)
             {
-                for (int x = -1; x <= 1; x++)
+                foreach (var posM in cell.MineZone)
                 {
-                    for (int y = -1; y <= 1; y++)
-                    {
-                        if (x == 0 && y == 0) continue;
-                        RevealCellAfClicked(pos + new Vector2I(x, y));
-                    }
+                    RevealCellAfClicked(pos + posM);
                 }
             }
         }
@@ -135,17 +121,14 @@ namespace NPR13.Scripts.Mains
         private void ToggleBacklight(Vector2I pos, bool isDisable)
         {
             if (cells.TryGetValue(pos, out var valCell) && !valCell.IsRevealed) return;
-            for (int x = -1; x <= 1; x++)
+
+            foreach (var posM in valCell.MineZone)
             {
-                for (int y = -1; y <= 1; y++)
+                var checkPos = pos + posM;
+                if (cells.TryGetValue(checkPos, out var tmpCell) && !tmpCell.IsRevealed)
                 {
-                    if (x == 0 && y == 0) continue;
-                    var checkPos = pos + new Vector2I(x, y);
-                    if (cells.TryGetValue(checkPos, out var tmpCell) && !tmpCell.IsRevealed )
-                    {
-                        if (isDisable) tmpCell.DisableBacklightVisibility();
-                        else tmpCell.EnableBacklightVisibility();
-                    }
+                    if (isDisable) tmpCell.DisableBacklightVisibility();
+                    else tmpCell.EnableBacklightVisibility();
                 }
             }
         }
