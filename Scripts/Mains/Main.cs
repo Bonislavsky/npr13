@@ -17,6 +17,7 @@ namespace NPR13.Scripts.Mains
         private int fieldWidth = 16;
         private int fieldHeight = 16;
         private int mineCount = 40;
+        private int revealedCells = 0;
         private Random _random = new Random();
 
         private Dictionary<Vector2I, Cell> cells = new Dictionary<Vector2I, Cell>();

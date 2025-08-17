@@ -9,6 +9,7 @@ namespace NPR13.Scripts.Mains
     {
         private void CreateGameField(Vector2I safePos)
         {
+            revealedCells = 0;
             PlaceMines(safePos);
             CalculateNumbers();
         }
@@ -48,13 +49,12 @@ namespace NPR13.Scripts.Mains
         private List<Vector2I> CreateSafeZone(Vector2I safePos)
         {
             List<Vector2I> safeZone = new List<Vector2I>();
+            cells.TryGetValue(safePos, out var cell);
 
-            for (int x = -1; x <= 1; x++) 
+            safeZone.Add(safePos);
+            foreach (var posM in cell.MineZone)
             {
-                for (int y = -1; y <= 1; y++)
-                {
-                    safeZone.Add(safePos + new Vector2I(x, y));
-                }
+                safeZone.Add(safePos + posM);
             }
 
             return safeZone;
@@ -100,14 +100,18 @@ namespace NPR13.Scripts.Mains
         private void RevealCellAfClicked(Vector2I pos)
         {
             if (!cells.TryGetValue(pos, out var cell) || cell.IsFlagged || cell.IsRevealed) return;
+
             cell.SetRevealed();
             cell.UpdateVisual();
+            revealedCells++;
 
             if (cell.IsMine) 
             {
                 GameOver();
                 return;
             }
+
+            CheckWinCondition();
 
             if (cell.AdjacentMines == 0)
             {
@@ -143,6 +147,14 @@ namespace NPR13.Scripts.Mains
                 }
             }
             _hud.ShowGameOverPanel();
+        }
+
+        private void CheckWinCondition()
+        {
+            if (revealedCells == fieldWidth * fieldHeight - mineCount) 
+            {
+                GameOver();
+            }        
         }
     }
 }

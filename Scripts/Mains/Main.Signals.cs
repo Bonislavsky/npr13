@@ -22,6 +22,7 @@ namespace NPR13.Scripts.Mains
             CreateGameField(pos);
             gameInitialized = true;
             InitializeClick -= OnInitializeClick;
+            RevealCellAfClicked(pos);
         }
 
         private void OnCellClicked(Vector2I pos)
@@ -29,7 +30,6 @@ namespace NPR13.Scripts.Mains
             if (!gameInitialized)
             {
                 EmitSignal(SignalName.InitializeClick, pos);
-                RevealCellAfClicked(pos);
                 return;
             }
 
@@ -80,6 +80,7 @@ namespace NPR13.Scripts.Mains
         {
             _hud.HideGameOverPanel();
 
+            revealedCells = 0;
             gameInitialized = false;
             InitializeClick += OnInitializeClick;
 
