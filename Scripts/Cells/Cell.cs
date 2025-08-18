@@ -53,6 +53,12 @@ namespace NPR13.Scripts.Cells
             IsRevealed = true;
         }  
 
+        /// <summary>
+        /// ONLY for tools
+        /// NOT USE in game logic
+        /// </summary>
+        public void SetNotRevealed() => IsRevealed = false;
+
         public virtual Vector2I[] GetMineZone()
         {
             return

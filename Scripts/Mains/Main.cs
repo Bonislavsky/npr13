@@ -9,6 +9,11 @@ namespace NPR13.Scripts.Mains
 {
     public partial class Main : Node
     {
+        #region tools
+        private PackedScene _cellCreatorScene;
+        private Window _cellCreatorInstance;
+        #endregion
+
         private PackedScene _cellScene;          
         private PackedScene _cellPoprigunScene;
         private GridContainer _gridContainer;
@@ -24,6 +29,8 @@ namespace NPR13.Scripts.Mains
 
         public override void _Ready()
         {
+            _cellCreatorScene = GD.Load<PackedScene>("res://Scenes/CellCreator.tscn");
+
             _cellPoprigunScene = GD.Load<PackedScene>("res://Scenes/CellPoprigun.tscn");
             _cellScene = GD.Load<PackedScene>("res://Scenes//Cell.tscn");
             _gridContainer = GetNode<GridContainer>("GridContainer");
@@ -70,6 +77,26 @@ namespace NPR13.Scripts.Mains
                 return _cellScene.Instantiate<Cell>(); 
             else                    
                 return _cellScene.Instantiate<Cell>();
+        }
+
+        public override void _Input(InputEvent @event)
+        {
+            if (@event is InputEventKey keyEvent && keyEvent.Pressed)
+            {
+                if (keyEvent.AltPressed && keyEvent.Keycode == Key.Key3)
+                {
+                    if (_cellCreatorInstance == null)
+                    {
+                        _cellCreatorInstance = _cellCreatorScene.Instantiate<Window>();
+                        GetTree().CurrentScene.AddChild(_cellCreatorInstance);
+                    }
+                    else
+                    {
+                        _cellCreatorInstance.QueueFree();
+                        _cellCreatorInstance = null;
+                    }
+                }
+            }
         }
     }
 } 

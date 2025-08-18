@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://grodaxsgwo8i"]
+
+[ext_resource type="Script" uid="uid://cfg41nwe283fh" path="res://Scripts/Tools/CellCreators/CellCreator.cs" id="1_ewu6h"]
+
+[node name="CellCreator" type="Window"]
+position = Vector2i(0, 36)
+size = Vector2i(400, 350)
+script = ExtResource("1_ewu6h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -175.0
+offset_right = 200.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.979787, 0.942585, 0.782564, 1)
+
+[node name="Constructor" type="GridContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TextEdit" type="TextEdit" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+scroll_smooth = true
+
+[node name="ButtonCopy" type="Button" parent="."]
+offset_left = 313.0
+offset_top = 261.0
+offset_right = 400.0
+offset_bottom = 287.0
+theme_override_font_sizes/font_size = 13
+text = "копировать"
