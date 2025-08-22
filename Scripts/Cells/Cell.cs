@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NPR13.Scripts.Cells
@@ -75,9 +76,16 @@ namespace NPR13.Scripts.Cells
             ];
         }
 
-        public virtual Vector2I[] GetRevealZone()
+        public virtual Vector2I[] GetSafeZone()
         {
-            return GetMineZone();
+            return GetMineZone().Concat(new List<Vector2I> 
+            { 
+                new Vector2I(0, 0),
+                new Vector2I(2, 2),
+                new Vector2I(-2, 2),
+                new Vector2I(-2, -2),
+                new Vector2I(2, -2)
+            }).ToArray();
         }
     }
 }

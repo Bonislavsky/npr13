@@ -1,5 +1,4 @@
 using Godot;
-using NPR13.Scripts.Cells;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -49,21 +48,9 @@ namespace NPR13.Scripts.Mains
         private List<Vector2I> CreateSafeZone(Vector2I centerPos)
         {
             var safePositions = new HashSet<Vector2I> { centerPos };
-            cells.TryGetValue(centerPos, out var cell);
+            var cell = cells[centerPos];
 
-            var adjacentOffsets = new Vector2I[]
-            {
-                new Vector2I(-1, -1), new Vector2I(-1, 0), new Vector2I(-1, 1),
-                new Vector2I(0, -1), new Vector2I(0, 1),
-                new Vector2I(1, -1), new Vector2I(1, 0), new Vector2I(1, 1)
-            };
-
-            foreach (var offset in adjacentOffsets)
-            {
-                safePositions.Add(centerPos + offset);
-            }
-
-            foreach (var offset in cell.MineZone)
+            foreach (var offset in cell.GetSafeZone())
             {
                 safePositions.Add(centerPos + offset);
             }
@@ -80,13 +67,14 @@ namespace NPR13.Scripts.Mains
 
                 if (!cell.IsMine)
                 {
-                    cell.SetAdjacentMines(CountAdjacentMines(pos, cell));
+                    cell.SetAdjacentMines(CountAdjacentMines(pos));
                 }
             }
         }
 
-        private int CountAdjacentMines(Vector2I pos, Cell cell)
+        private int CountAdjacentMines(Vector2I pos)
         {
+            var cell = cells[pos];
             int count = 0;
             
             foreach(var posM in cell.MineZone)
@@ -135,9 +123,9 @@ namespace NPR13.Scripts.Mains
 
         private void ToggleBacklight(Vector2I pos, bool isDisable)
         {
-            if (cells.TryGetValue(pos, out var valCell) && !valCell.IsRevealed) return;
+            if (cells.TryGetValue(pos, out var cell) && !cell.IsRevealed) return;
 
-            foreach (var posM in valCell.MineZone)
+            foreach (var posM in cell.MineZone)
             {
                 var checkPos = pos + posM;
                 if (cells.TryGetValue(checkPos, out var tmpCell) && !tmpCell.IsRevealed)
