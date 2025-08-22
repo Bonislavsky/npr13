@@ -1,4 +1,5 @@
 using Godot;
+using System.Linq;
 
 namespace NPR13.Scripts.Cells
 {
@@ -72,6 +73,11 @@ namespace NPR13.Scripts.Cells
                 new Vector2I( 1,  0),
                 new Vector2I( 1,  1)
             ];
+        }
+
+        public virtual Vector2I[] GetRevealZone()
+        {
+            return GetMineZone();
         }
     }
 }

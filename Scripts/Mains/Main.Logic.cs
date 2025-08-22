@@ -46,18 +46,29 @@ namespace NPR13.Scripts.Mains
             }
         }
 
-        private List<Vector2I> CreateSafeZone(Vector2I safePos)
+        private List<Vector2I> CreateSafeZone(Vector2I centerPos)
         {
-            List<Vector2I> safeZone = new List<Vector2I>();
-            cells.TryGetValue(safePos, out var cell);
+            var safePositions = new HashSet<Vector2I> { centerPos };
+            cells.TryGetValue(centerPos, out var cell);
 
-            safeZone.Add(safePos);
-            foreach (var posM in cell.MineZone)
+            var adjacentOffsets = new Vector2I[]
             {
-                safeZone.Add(safePos + posM);
+                new Vector2I(-1, -1), new Vector2I(-1, 0), new Vector2I(-1, 1),
+                new Vector2I(0, -1), new Vector2I(0, 1),
+                new Vector2I(1, -1), new Vector2I(1, 0), new Vector2I(1, 1)
+            };
+
+            foreach (var offset in adjacentOffsets)
+            {
+                safePositions.Add(centerPos + offset);
             }
 
-            return safeZone;
+            foreach (var offset in cell.MineZone)
+            {
+                safePositions.Add(centerPos + offset);
+            }
+
+            return safePositions.ToList();
         }
 
         private void CalculateNumbers()
@@ -109,17 +120,17 @@ namespace NPR13.Scripts.Mains
             {
                 GameOver();
                 return;
-            }
-
-            CheckWinCondition();
+            }            
 
             if (cell.AdjacentMines == 0)
             {
-                foreach (var posM in cell.MineZone)
+                foreach (var offset in cell.MineZone)
                 {
-                    RevealCellAfClicked(pos + posM);
+                    RevealCellAfClicked(pos + offset);
                 }
             }
+
+            CheckWinCondition();
         }
 
         private void ToggleBacklight(Vector2I pos, bool isDisable)
