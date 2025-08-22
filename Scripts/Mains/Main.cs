@@ -14,8 +14,10 @@ namespace NPR13.Scripts.Mains
         private Window _cellCreatorInstance;
         #endregion
 
-        private PackedScene _cellScene;          
+        private PackedScene _cellScene;
         private PackedScene _cellPoprigunScene;
+        private PackedScene _cellBishopScene;
+
         private GridContainer _gridContainer;
         private Hud _hud;
 
@@ -31,6 +33,7 @@ namespace NPR13.Scripts.Mains
         {
             _cellCreatorScene = GD.Load<PackedScene>("res://Scenes/CellCreator.tscn");
 
+            _cellBishopScene = GD.Load<PackedScene>("res://Scenes/CellBishop.tscn");
             _cellPoprigunScene = GD.Load<PackedScene>("res://Scenes/CellPoprigun.tscn");
             _cellScene = GD.Load<PackedScene>("res://Scenes//Cell.tscn");
             _gridContainer = GetNode<GridContainer>("GridContainer");
@@ -73,8 +76,8 @@ namespace NPR13.Scripts.Mains
 
             if (rand < 0.1f)        
                 return _cellPoprigunScene.Instantiate<CellPoprigun>();
-            else if (rand < 0.15f)  
-                return _cellScene.Instantiate<Cell>(); 
+            else if (rand < 0.2f)  
+                return _cellBishopScene.Instantiate<CellBishop>(); 
             else                    
                 return _cellScene.Instantiate<Cell>();
         }

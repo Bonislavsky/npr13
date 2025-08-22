@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8c70m1jy0sh7"]
+
+[ext_resource type="PackedScene" uid="uid://coeojc5rmtc70" path="res://Scenes/Cell.tscn" id="1_jcv7u"]
+[ext_resource type="Script" uid="uid://5x6wvepcqjhh" path="res://Scripts/Cells/Child/CellBishop.cs" id="2_ma70h"]
+
+[node name="CellBishop" instance=ExtResource("1_jcv7u")]
+script = ExtResource("2_ma70h")
+
+[node name="CellUniqueIllumination" type="ColorRect" parent="." index="3"]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.929412, 0.792157, 0.0862745, 0.607843)
