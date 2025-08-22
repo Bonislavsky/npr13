@@ -94,5 +94,25 @@ namespace NPR13.Scripts.Mains
                 }
             }
         }
+
+        public override void _Input(InputEvent @event)
+        {
+            if (@event is InputEventKey keyEvent && keyEvent.Pressed)
+            {
+                if (keyEvent.AltPressed && keyEvent.Keycode == Key.Key3)
+                {
+                    if (_cellCreatorInstance == null)
+                    {
+                        _cellCreatorInstance = _cellCreatorScene.Instantiate<Window>();
+                        GetTree().CurrentScene.AddChild(_cellCreatorInstance);
+                    }
+                    else
+                    {
+                        _cellCreatorInstance.QueueFree();
+                        _cellCreatorInstance = null;
+                    }
+                }
+            }
+        }
     }
 }

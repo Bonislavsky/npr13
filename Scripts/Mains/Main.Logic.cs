@@ -1,4 +1,6 @@
 using Godot;
+using NPR13.Scripts.Cells;
+using NPR13.Scripts.Cells.Child;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,6 +13,45 @@ namespace NPR13.Scripts.Mains
             revealedCells = 0;
             PlaceMines(safePos);
             CalculateNumbers();
+        }
+
+        private void FillingContainer()
+        {
+            _gridContainer.Columns = fieldWidth;
+            cells.Clear();
+
+            for (int x = 0; x < fieldWidth; x++)
+            {
+                for (int y = 0; y < fieldHeight; y++)
+                {
+                    var pos = new Vector2I(x, y);
+                    var cellInstance = CreateRandomCell();
+                    cellInstance.Initialize(pos);
+                    cellInstance.Name = $"cell_{x}-{y}";
+
+                    cellInstance.CellClicked += OnCellClicked;
+                    cellInstance.CellRightClicked += OnCellRightClicked;
+                    cellInstance.CellDoubleClicked += OnCellDoubleClicked;
+
+                    cellInstance.CellMouseEntered += OnCellMouseEntered;
+                    cellInstance.CellMouseExited += OnCellMouseExited;
+
+                    _gridContainer.AddChild(cellInstance);
+                    cells[pos] = cellInstance;
+                }
+            }
+        }
+
+        private Cell CreateRandomCell()
+        {
+            float rand = _random.NextSingle();
+
+            if (rand < 0.1f)
+                return _cellPoprigunScene.Instantiate<CellPoprigun>();
+            else if (rand < 0.2f)
+                return _cellBishopScene.Instantiate<CellBishop>();
+            else
+                return _cellScene.Instantiate<Cell>();
         }
 
         private void PlaceMines(Vector2I safePos)
