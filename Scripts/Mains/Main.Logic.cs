@@ -189,6 +189,7 @@ namespace NPR13.Scripts.Mains
             }
             _hud.ShowGameOverPanel();
         }
+
         public void GameWin()
         {
             _hud.ShowGameOverPanel("ура ты выиграл!!");

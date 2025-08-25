@@ -29,7 +29,6 @@ namespace NPR13.Scripts.Cells
         {
             _label.Text = "";
             _label.Modulate = Colors.White;
-            Modulate = Colors.White;
             _backlight.Visible = false;
             _backlightLabel.Text = "?";
         }
