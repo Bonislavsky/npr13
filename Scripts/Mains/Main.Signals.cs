@@ -46,7 +46,7 @@ namespace NPR13.Scripts.Mains
         private void OnCellRightClicked(Vector2I pos)
         {
             if (cells.TryGetValue(pos, out var cell))
-            {
+            {               
                 cell.ToggleFlag();
                 cell.UpdateVisual();
             }

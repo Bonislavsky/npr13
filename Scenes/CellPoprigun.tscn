@@ -6,7 +6,7 @@
 [node name="CellPoprigun" instance=ExtResource("1_l8y84")]
 script = ExtResource("2_lbmit")
 
-[node name="CellUniqueIllumination" type="ColorRect" parent="." index="3"]
+[node name="CellUniqueIllumination" type="ColorRect" parent="." index="2"]
 visible = false
 layout_mode = 0
 offset_right = 32.0

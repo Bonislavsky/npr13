@@ -142,7 +142,8 @@ namespace NPR13.Scripts.Mains
             if (!cells.TryGetValue(pos, out var cell) || cell.IsFlagged || cell.IsRevealed) return;
 
             cell.SetRevealed();
-            cell.UpdateVisual();
+            cell.AnimateClick(cell.UpdateVisual); // может фигня, но пока пускай будет
+
             revealedCells++;
 
             if (cell.IsMine) 
@@ -171,8 +172,8 @@ namespace NPR13.Scripts.Mains
                 var checkPos = pos + posM;
                 if (cells.TryGetValue(checkPos, out var tmpCell) && !tmpCell.IsRevealed)
                 {
-                    if (isDisable) tmpCell.DisableBacklightVisibility();
-                    else tmpCell.EnableBacklightVisibility();
+                    if (isDisable) tmpCell.DisableBacklightVisibility();                   
+                    else tmpCell.EnableBacklightVisibility();                   
                 }
             }
         }
@@ -188,12 +189,16 @@ namespace NPR13.Scripts.Mains
             }
             _hud.ShowGameOverPanel();
         }
+        public void GameWin()
+        {
+            _hud.ShowGameOverPanel("ура ты выиграл!!");
+        }
 
         private void CheckWinCondition()
         {
             if (revealedCells == fieldWidth * fieldHeight - mineCount) 
             {
-                GameOver();
+                GameWin();
             }        
         }
     }

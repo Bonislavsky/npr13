@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://s4i621kmis8"]
+[gd_scene load_steps=4 format=3 uid="uid://s4i621kmis8"]
 
 [ext_resource type="Script" uid="uid://bmqs26kckx0pv" path="res://Scripts/Mains/Main.cs" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bqihxnbu2qp67" path="res://Scenes/hud.tscn" id="2_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://dpsg520grsi2b" path="res://Arts/wallper.jpg" id="3_8gbba"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jjgbg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8gbba")
+expand_mode = 3
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 8

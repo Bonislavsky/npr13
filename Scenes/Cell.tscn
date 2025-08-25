@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://coeojc5rmtc70"]
 
-[ext_resource type="Texture2D" uid="uid://wgswlxm8onfi" path="res://Arts/cell.jpg" id="2_cu71v"]
+[ext_resource type="Texture2D" uid="uid://b5yclck16pcxb" path="res://Arts/cell_front.png" id="2_jgku0"]
 [ext_resource type="Script" uid="uid://cm6meh8ij68e3" path="res://Scripts/Cells/Cell.cs" id="2_wfxbd"]
 
 [node name="Cell" type="Panel"]
@@ -14,8 +14,30 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("2_cu71v")
+texture = ExtResource("2_jgku0")
 expand_mode = 5
+
+[node name="CellBacklight" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+localize_numeral_system = false
+color = Color(0.286275, 0.670588, 0.439216, 0.729412)
+
+[node name="Label" type="Label" parent="CellBacklight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.674596, 0.949656, 0.819193, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CellLabel" type="Label" parent="."]
 layout_mode = 0
@@ -25,10 +47,3 @@ offset_bottom = 34.0
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CellBacklight" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 32.0
-color = Color(0.286275, 0.670588, 0.439216, 0.560784)

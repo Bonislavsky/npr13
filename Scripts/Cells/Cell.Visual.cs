@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 namespace NPR13.Scripts.Cells
 {
@@ -11,6 +12,7 @@ namespace NPR13.Scripts.Cells
             if (IsFlagged)
             {
                 _label.Text = "🚩";
+                _backlightLabel.Text = "";
             }
             else if (IsRevealed)
             {
@@ -19,7 +21,7 @@ namespace NPR13.Scripts.Cells
                     _label.Text = AdjacentMines.ToString();
                     _label.Modulate = GetNumberColor(AdjacentMines);                  
                 }
-                Modulate = Colors.WebGray;
+                _texture.Texture = GD.Load<Texture2D>("res://Arts/cell_back.png");
             }
         }
 
@@ -29,6 +31,7 @@ namespace NPR13.Scripts.Cells
             _label.Modulate = Colors.White;
             Modulate = Colors.White;
             _backlight.Visible = false;
+            _backlightLabel.Text = "?";
         }
 
         public void GameOverVisual()
@@ -52,8 +55,8 @@ namespace NPR13.Scripts.Cells
             return number switch
             {
                 1 => Colors.Blue,
-                2 => Colors.Green,
-                3 => Colors.Red,
+                2 => Colors.DarkGreen,
+                3 => Colors.DarkRed,
                 4 => Colors.Purple,
                 5 => Colors.Brown,
                 6 => Colors.Pink,
@@ -61,6 +64,29 @@ namespace NPR13.Scripts.Cells
                 8 => Colors.Gray,
                 _ => Colors.Black
             };
+        }
+
+        public void AnimateClick(Action callback)
+        {
+            if (!_animationsEnabled)
+            {
+                callback?.Invoke();
+                return;
+            }
+          
+            var tween = CreateTween();
+            PivotOffset = new Vector2(16, 16);
+
+            tween.TweenProperty(this, "scale:x", 0.0f, 0.1f);
+
+            tween.TweenCallback(Callable.From(()=> 
+            {
+                callback?.Invoke();
+            }
+            ));
+
+            tween.TweenProperty(this, "scale:x", 1.0f, 0.1f);
+
         }
     }
 }

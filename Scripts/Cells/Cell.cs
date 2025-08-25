@@ -6,6 +6,8 @@ namespace NPR13.Scripts.Cells
 {
     public partial class Cell : Panel
     {
+        public bool _animationsEnabled = true;
+
         public Vector2I GridPosition { get; private set; }
         public bool IsMine { get; private set; }
         public bool IsFlagged { get; private set; }
@@ -15,6 +17,8 @@ namespace NPR13.Scripts.Cells
 
         protected Label _label;
         protected ColorRect _backlight;
+        protected TextureRect _texture;
+        protected Label _backlightLabel;
 
         public Cell()
         {
@@ -25,14 +29,17 @@ namespace NPR13.Scripts.Cells
         {
             _label = GetNode<Label>("CellLabel");
             _backlight = GetNode<ColorRect>("CellBacklight");
+            _texture = GetNode<TextureRect>("CellTexture");
+            _backlightLabel = GetNode<Label>("CellBacklight/Label");
 
+            InitializeStyle();
             InitializeSignals();
+            DefaultValue();
         }
 
         public void Initialize(Vector2I pos)
         {
             GridPosition = pos;
-            DefaultValue();
         }
 
         public void DefaultValue()
@@ -40,6 +47,7 @@ namespace NPR13.Scripts.Cells
             IsMine = false;
             IsFlagged = false;
             IsRevealed = false;
+            _texture.Texture = GD.Load<Texture2D>("res://Arts/cell_front.png");
         }
 
         public void SetMine() => IsMine = true;

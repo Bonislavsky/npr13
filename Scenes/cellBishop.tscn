@@ -6,7 +6,7 @@
 [node name="CellBishop" instance=ExtResource("1_jcv7u")]
 script = ExtResource("2_ma70h")
 
-[node name="CellUniqueIllumination" type="ColorRect" parent="." index="3"]
+[node name="CellUniqueIllumination" type="ColorRect" parent="." index="2"]
 visible = false
 layout_mode = 0
 offset_right = 32.0
