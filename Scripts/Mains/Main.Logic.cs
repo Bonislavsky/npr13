@@ -202,5 +202,11 @@ namespace NPR13.Scripts.Mains
                 GameWin();
             }        
         }
+
+        private void UpdatePanelBackground()
+        {
+            _panelBackground.Position = _gridContainer.Position;
+            _panelBackground.Size = _gridContainer.Size;
+        }
     }
 }

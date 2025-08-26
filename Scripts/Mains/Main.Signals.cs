@@ -112,6 +112,10 @@ namespace NPR13.Scripts.Mains
                         _cellCreatorInstance = null;
                     }
                 }
+                if(keyEvent.AltPressed && keyEvent.Keycode == Key.Key1)
+                {
+                    Restart();
+                }
             }
         }
     }

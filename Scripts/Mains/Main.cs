@@ -17,6 +17,7 @@ namespace NPR13.Scripts.Mains
         private PackedScene _cellPoprigunScene;
         private PackedScene _cellBishopScene;
 
+        private Panel _panelBackground;
         private GridContainer _gridContainer;
         private Hud _hud;
 
@@ -36,10 +37,12 @@ namespace NPR13.Scripts.Mains
             _cellPoprigunScene = GD.Load<PackedScene>("res://Scenes/CellPoprigun.tscn");
             _cellScene = GD.Load<PackedScene>("res://Scenes//Cell.tscn");
             _gridContainer = GetNode<GridContainer>("GridContainer");
+            _panelBackground = GetNode<Panel>("PanelBackground");
             _hud = GetNode<Hud>("HUD");
 
             InitializeSignals();
             FillingContainer();
+            CallDeferred(nameof(UpdatePanelBackground));
         }
     }
 } 
